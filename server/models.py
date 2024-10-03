@@ -1,13 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy_serializer import SerializerMixin as sm
 
 metadata = MetaData()
 
 db = SQLAlchemy(metadata=metadata)
 
 
-class Pet(db.Model):
+class Pet(db.Model, sm):
     __tablename__ = 'pets'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -16,3 +16,4 @@ class Pet(db.Model):
 
     def __repr__(self):
         return f'<Pet {self.id}, {self.name}, {self.species}>'
+
